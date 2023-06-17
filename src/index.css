@@ -1,5 +1,12 @@
-body {
+*{
   margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  width: 100%;
+  min-height: 100vh;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
@@ -7,7 +14,52 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.Header{
+  background-color: aliceblue;
+  padding: 20px;
+}
+
+.Header_listItems{
+  list-style-type: none;
+  display: flex;
+  justify-content: flex-end;
+  gap : 50px;
+
+}
+
+.Search{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
+  padding: 20px;
+}
+
+input{
+  padding: 8px;
+  width: 30%;
+  font-size: 0.8rem;
+}
+
+.shelves{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 15px;
+}
+
+
+.current_books{
+  list-style-type: none;
+  display: flex;
+  gap: 20px;
+ 
+}
+
+.wantread{
+  margin: 20px;
+  list-style-type: none;
+  display: flex;
+  gap:10px;
 }
