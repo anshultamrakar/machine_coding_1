@@ -1,16 +1,12 @@
 import React from 'react'
 import { useState , useEffect } from 'react'
+import {IoIosArrowDropdownCircle} from "react-icons/io"
 
 
-const shelvesData = [
-   
 
-]
-
-
-const Shelves = () => {
-    const [books , setBooks] = useState([])
-    const [currentlyReading , setCurrentlyReading] = useState([ {
+const Shelves = ({shelvesData}) => {
+    const [books , setBooks] = useState(shelvesData)
+    const [currentlyReading , setCurrentlyReading] = useState([{
         id :1, 
         bookname : "Fitness Nutrition",
         author : "Nikolas Bojrn",
@@ -26,74 +22,64 @@ const Shelves = () => {
     }])
     const [wantRead , setWantRead] = useState([
         {
-            id :1, 
+            id :3, 
             bookname : "Read People like a Book",
             author : "CA Bhilwara",
             category : "motivation", 
             img : "https://rukminim1.flixcart.com/image/612/612/l2tcfbk0/book/s/r/y/read-people-like-a-book-original-image272ehyxgbhe.jpeg?q=70",
         },
         {
-            id :2, 
+            id :4, 
             bookname : "Working backword",
             author : "Colin Bryar",
             category : "fitness", 
             img : "https://rukminim1.flixcart.com/image/612/612/xif0q/book/o/v/x/working-backwards-original-imaghtnkqggbgqpr.jpeg?q=70",
         }
     ])
-    const [read , setRead] = useState([
-        {
-            id :1, 
-            bookname : "Zero to One",
-            author : "Peter Thiel",
-            category : "motivation", 
-            img : "https://rukminim1.flixcart.com/image/612/612/kufuikw0/book/l/v/o/zero-to-one-original-imag7jw5hcwng8bq.jpeg?q=70",
-        },
-        {
-            id :2, 
-            bookname : "Side Hustle",
-            author : "Chris Guillebeau",
-            category : "fitness", 
-            img : "https://rukminim1.flixcart.com/image/612/612/xif0q/book/e/f/z/side-hustle-original-imagh7zgjmcspxgg.jpeg?q=70",
-        }
-    ])
+    const [read , setRead] = useState([])
+
+    const handleWantRead = (book) => {
+       const wantList = [...wantRead , book]
+       setWantRead(wantList)
+    }
+
+
+    const handleCurrentRead = (book) => {
+     const currentList = [...currentlyReading , book]
+     setCurrentlyReading(currentList)
+    }
+
+
+
   return (
     <div className='shelves'>
-       <h4>Currently Reading</h4>
-       <br/>
-       <ul className='current_books'>
+       <h2>Currently Reading</h2>
+       <ul className='bookItems'>
         {currentlyReading.map(book => (
-            <li>
-                <img src = {book.img}/>
+            <li className='bookList'>
+                <img src = {book.img} width= "150" height= "200"/>
                 <p>{book.bookname}</p>
                 <p>Author : {book.author}</p>
-                <button>+</button>
+                <button onClick={() => handleCurrentRead(book)}>Currently reading</button>
+                <button onClick={() => handleWantRead(book)}>Want to read</button>
+                <button>Read</button>
             </li>
         ))}
        </ul>
-       <br/>
-       <br/>
-       <h4>Want to Read </h4>
-       <ul className='wantread'>
+       <h2>Want to read</h2>
+       <ul className='bookItems'>
        {wantRead.map(book => (
-            <li className='wantread_books'>
-                <img src = {book.img}/>
+        <li className='bookList'>
+             <img src = {book.img} width= "150" height= "200"/>
                 <p>{book.bookname}</p>
                 <p>Author : {book.author}</p>
-            </li>
-        ))}
+                <button >Currently reading</button>
+                <button>Want to read</button>
+                <button>Read</button>
+        </li>
+       ))}
        </ul>
-       <br/>
-       <br/>
-       <h4>Read</h4>
-       <ul className='wantread'>
-       {read.map(book => (
-            <li className='wantread_books'>
-                <img src = {book.img}/>
-                <p>{book.bookname}</p>
-                <p>Author : {book.author}</p>
-            </li>
-        ))}
-       </ul>
+  
     </div>
   )
 }
